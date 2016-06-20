@@ -1,0 +1,26 @@
+version: '2'
+services:
+  server:
+    #image: lacsap/cmangos-classic
+    build: .
+    network_mode: "bridge"
+    container_name: cmangos-classic-server
+    ports:
+      - "8085:8085"
+      - "3724:3724"
+    depends_on:
+      - db
+    links:
+      - db:db
+    volumes:
+      - /docker_data/cmangos-classic:/home/mangos/run/etc/
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+  db:
+    image: mariadb
+    network_mode: "bridge"
+    container_name: cmangos-classic-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
