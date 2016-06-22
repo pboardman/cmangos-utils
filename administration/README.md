@@ -4,7 +4,7 @@
 
 - mysql command line client
 
-You can use `apt-get install mysql-client` if you have a debian based distro
+You can install it with `apt-get install mysql-client` if you have a debian based distro
 
 ## config file
 just update the config file to match your DB ip, username and password to use the scripts
