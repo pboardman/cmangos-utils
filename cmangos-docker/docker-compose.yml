@@ -3,7 +3,6 @@ services:
   server:
     #image: lacsap/cmangos-classic
     build: .
-    network_mode: "bridge"
     container_name: cmangos-classic-server
     ports:
       - "8085:8085"
@@ -17,8 +16,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: toor
   db:
-    image: mariadb
-    network_mode: "bridge"
+    image: mysql
     container_name: cmangos-classic-db
     ports:
       - "3306:3306"
