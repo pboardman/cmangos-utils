@@ -1,3 +1,3 @@
 # cmangos-utils
 
-Just some scripts/configs I use for my [CMaNGOS](cmangos.net) server.
+Just some scripts/configs I use for my [CMaNGOS](https://github.com/cmangos) server.
