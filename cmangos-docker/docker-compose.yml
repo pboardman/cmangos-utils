@@ -1,7 +1,7 @@
 version: '2'
 services:
   server:
-    image: lacsap/cmangos-classic-server
+    image: lacsap/cmangos-classic
     #build: .
     container_name: cmangos-classic-server
     ports:
