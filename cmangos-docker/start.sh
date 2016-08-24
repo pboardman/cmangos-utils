@@ -40,7 +40,7 @@ if [ ! -f /home/mangos/run/etc/done_first_run ]; then
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/acid/acid_classic.sql
  
   # Making server public
-  pub_ip=$(curl ifconfig.me)
+  pub_ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | cut -d'"' -f2)
   sed -i -e "s/IP/$pub_ip/g" /home/mangos/mangos/sql/base/set_realmlist_public.sql
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb realmd < /home/mangos/mangos/sql/base/set_realmlist_public.sql
 

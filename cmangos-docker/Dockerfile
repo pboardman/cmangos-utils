@@ -8,7 +8,7 @@ ENV MYSQL_ROOT_PASSWORD toor
 RUN apt-get update
 RUN apt-get install -y build-essential gcc g++ automake git-core \
 autoconf make patch libmysql++-dev libtool mysql-client supervisor \
-libssl-dev grep binutils zlibc libc6 libbz2-dev cmake subversion libboost-all-dev curl
+libssl-dev grep binutils zlibc libc6 libbz2-dev cmake subversion libboost-all-dev curl dnsutils
 
 # Adding mangos user and group
 RUN groupadd mangos
