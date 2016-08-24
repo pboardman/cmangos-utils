@@ -1,14 +1,24 @@
 # CMaNGOS Classic inside docker
 
-These files are used to create a CMaNGOS server inside a docker container
-
-
+These files are used to create a CMaNGOS server docker image.
 
 ## How to
 
-You first need to extract the maps, vmaps, mmaps and dbc from your WoW client [some info here](https://github.com/cmangos/mangos-classic/tree/master/contrib/extractor_binary) to the folder where the Dockerfile is.
+First, clone this repository and follow either use the instruction using the CMaNGOS image on Dockerhub or the other where you build your own CMaNGOS image.
 
-Then just run ```docker-compose up``` and it will spin up a cmangos container and a MariaDB container to host the data. (Obviously you need docker and docker-compose for this)
+### Using the image on Dockerhub
+
+Run ` docker-compose up ` and it will start up a CMaNGOS container, a NGINX container with a webpage where you can create an account and a MariaDB container to host all the data.
+
+### Building the CMaNGOS image yourself
+
+You first need to extract the maps, vmaps, mmaps and dbc from your WoW client [some info here](https://github.com/cmangos/mangos-classic/tree/master/contrib/extractor_binary) and place them in the cmangos-docker folder
+
+in the ` docker-compose.yml ` comment the line ` image: lacsap/cmangos-classic-server ` and uncomment the line ` #build: .  `
+
+Run ` docker-compose up ` to build the CMaNGOS container and start up the CMaNGOS container, a NGINX container with a webpage where you can create an account and a MariaDB container to host all the data.
+
+## Defaults
 
 The default GM account is: 
 
