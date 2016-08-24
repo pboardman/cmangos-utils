@@ -1,8 +1,8 @@
 version: '2'
 services:
   server:
-    #image: lacsap/cmangos-classic-server
-    build: .
+    image: lacsap/cmangos-classic-server
+    #build: .
     container_name: cmangos-classic-server
     ports:
       - "8085:8085"
