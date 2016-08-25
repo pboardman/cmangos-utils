@@ -4,11 +4,11 @@ These files are used to create a CMaNGOS server docker image.
 
 ## How to
 
-First, clone this repository and follow either use the instruction using the CMaNGOS image on Dockerhub or the other where you build your own CMaNGOS image.
+First, clone this repository and either follow the instructions using the CMaNGOS image on Dockerhub or the instructions where you build your own CMaNGOS image.
 
 ### Using the image on Dockerhub
 
-Run ` docker-compose up ` and it will start up a CMaNGOS container, a NGINX container with a webpage where you can create an account and a MariaDB container to host all the data.
+Run ` docker-compose up ` and it will start up a CMaNGOS container, a PHP container with a webpage where you can create an account and a MariaDB container to host all the data.
 
 ### Building the CMaNGOS image yourself
 
