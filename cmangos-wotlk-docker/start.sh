@@ -28,7 +28,7 @@ if [ ! -f /home/mangos/run/etc/done_first_run ]; then
   chmod +x InstallFullDB.sh
   ./InstallFullDB.sh
   sed -i -e 's/CORE_PATH=""/CORE_PATH="\/home\/mangos\/mangos"/g' InstallFullDB.config
-  sed -i -e 's/DB_HOST="localhost"/DB_HOST="db"/g' InstallFullDB.config
+  sed -i -e 's/DBHOST="localhost"/DBHOST="db"/g' InstallFullDB.config
   cat InstallFullDB.config
   ./InstallFullDB.sh
 
@@ -38,7 +38,7 @@ if [ ! -f /home/mangos/run/etc/done_first_run ]; then
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/mangos/sql/scriptdev2/scriptdev2.sql
 
   # Filling ACID to world-database
-  mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/acid/acid_classic.sql
+  mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/acid/acid_wotlk.sql
 
   # Making server public
   pub_ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | cut -d'"' -f2)

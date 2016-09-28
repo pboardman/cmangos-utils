@@ -25,8 +25,7 @@ services:
       MYSQL_ROOT_PASSWORD: toor
 
   register:
-    image: lacsap/cmangos-register
-    build: ../web_register/
+    image: lacsap/cmangos-web-register
     container_name: cmangos-wotlk-register
     ports:
       - "8080:80"
