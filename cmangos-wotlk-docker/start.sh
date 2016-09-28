@@ -23,22 +23,23 @@ if [ ! -f /home/mangos/run/etc/done_first_run ]; then
   # Initializing realmd database
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb realmd < /home/mangos/mangos/sql/base/realmd.sql
 
-  # Installing classicdb
-  cd /home/mangos/classicdb
+  # Installing unifieddb
+  cd /home/mangos/unifieddb
+  chmod +x InstallFullDB.sh
   ./InstallFullDB.sh
   sed -i -e 's/CORE_PATH=""/CORE_PATH="\/home\/mangos\/mangos"/g' InstallFullDB.config
   sed -i -e 's/DB_HOST="localhost"/DB_HOST="db"/g' InstallFullDB.config
   cat InstallFullDB.config
   ./InstallFullDB.sh
 
-  echo "CDB done"
+  echo "UDB done"
 
   # Filling ScriptDev2 database
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/mangos/sql/scriptdev2/scriptdev2.sql
 
   # Filling ACID to world-database
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/acid/acid_classic.sql
- 
+
   # Making server public
   pub_ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | cut -d'"' -f2)
   sed -i -e "s/IP/$pub_ip/g" /home/mangos/mangos/sql/base/set_realmlist_public.sql

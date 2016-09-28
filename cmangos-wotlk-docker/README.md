@@ -1,6 +1,4 @@
-# CMaNGOS WOTLK inside docker
-
-THIS IMAGE DOES NOT WORK YET
+# CMaNGOS Classic inside docker
 
 These files are used to create a CMaNGOS server docker image.
 

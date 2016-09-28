@@ -17,9 +17,9 @@ RUN useradd -m -d /home/mangos -c "MANGoS" -g mangos mangos
 WORKDIR /home/mangos/
 
 # Cloning repos
-RUN git clone git://github.com/cmangos/mangos-classic.git mangos
-RUN git clone git://github.com/ACID-Scripts/Classic.git acid
-RUN git clone git://github.com/classicdb/database.git classicdb
+RUN git clone git://github.com/cmangos/mangos-wotlk.git mangos
+RUN git clone git://github.com/ACID-Scripts/WOTLK.git acid
+RUN git clone git://github.com/unified-db/Database.git unifieddb
 
 # "Creating build and run folders"
 RUN mkdir build

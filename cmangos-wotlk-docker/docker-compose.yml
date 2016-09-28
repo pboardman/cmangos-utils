@@ -1,9 +1,9 @@
 version: '2'
 services:
   server:
-    image: lacsap/cmangos-classic
+    image: lacsap/cmangos-wotlk
     #build: .
-    container_name: cmangos-classic-server
+    container_name: cmangos-wotlk-server
     ports:
       - "8085:8085"
       - "3724:3724"
@@ -12,24 +12,23 @@ services:
     links:
       - db:db
     volumes:
-      - /docker_data/cmangos-classic:/home/mangos/run/etc/
+      - /docker_data/cmangos-wotlk:/home/mangos/run/etc/
     environment:
       MYSQL_ROOT_PASSWORD: toor
 
   db:
     image: mysql
-    container_name: cmangos-classic-db
+    container_name: cmangos-wotlk-db
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: toor
 
   register:
-    #image: lacsap/cmangos-classic-register
+    image: lacsap/cmangos-register
     build: ../web_register/
-    container_name: cmangos-classic-register
+    container_name: cmangos-wotlk-register
     ports:
       - "8080:80"
     links:
       - db:db
-      
