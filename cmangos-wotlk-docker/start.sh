@@ -24,7 +24,7 @@ if [ ! -f /home/mangos/run/etc/done_first_run ]; then
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb realmd < /home/mangos/mangos/sql/base/realmd.sql
 
   # Removing ONLY_FULL_GROUP_BY from sql_mode (required for UDB)
-  mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))"
+  mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb -e "SET GLOBAL sql_mode=''"
 
   # Installing unifieddb
   cd /home/mangos/unifieddb
