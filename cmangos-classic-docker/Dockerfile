@@ -19,7 +19,7 @@ WORKDIR /home/mangos/
 # Cloning repos
 RUN git clone git://github.com/cmangos/mangos-classic.git mangos
 RUN git clone git://github.com/ACID-Scripts/Classic.git acid
-RUN git clone git://github.com/classicdb/database.git classicdb
+RUN git clone https://github.com/cmangos/classic-db.git classicdb
 
 # "Creating build and run folders"
 RUN mkdir build
