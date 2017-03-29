@@ -10,3 +10,4 @@ This repo contains:
 - [A classic maps, vmaps, mmaps and dbc automatic extractor docker image](classic-client-extractor-docker)
 - [A very simple CMaNGOS server account creation website](web_register)
 - [Some administrations scripts for running a CMaNGOS server](administration) (VERY barebone for now)
+- [Upstart service files examples](upstart)
