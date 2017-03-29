@@ -8,7 +8,7 @@ First, clone this repository and either follow the instructions using the CMaNGO
 
 ### Using the image on Dockerhub
 
-Run ` docker-compose up ` and it will start up a CMaNGOS container, a PHP container with a webpage where you can create an account and a MariaDB container to host all the data.
+Run ` docker-compose up ` and it will start up a CMaNGOS container, a PHP container with a webpage where you can create an account and a MySQL container to host all the data.
 
 ### Building the CMaNGOS image yourself
 
@@ -16,7 +16,7 @@ You first need to extract the maps, vmaps, mmaps and dbc from your WoW client [s
 
 in the ` docker-compose.yml ` comment the line ` image: lacsap/cmangos-classic-server ` and uncomment the line ` #build: .  `
 
-Run ` docker-compose up ` to build the CMaNGOS container and start up the CMaNGOS container, a NGINX container with a webpage where you can create an account and a MariaDB container to host all the data.
+Run ` docker-compose up ` to build the CMaNGOS container and start up the CMaNGOS container, a NGINX container with a webpage where you can create an account and a MySQL container to host all the data.
 
 ## Defaults
 
