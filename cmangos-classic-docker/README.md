@@ -12,7 +12,7 @@ Run ` docker-compose up ` and it will start up a CMaNGOS container, a PHP contai
 
 ### Building the CMaNGOS image yourself
 
-You first need to extract the maps, vmaps, mmaps and dbc from your WoW client [some info here](https://github.com/cmangos/mangos-classic/tree/master/contrib/extractor_binary) and place them in the cmangos-docker folder
+You first need to extract the maps, vmaps, mmaps and dbc from your WoW client [some info here](https://github.com/cmangos/mangos-classic/tree/master/contrib/extractor_binary) and place them in the cmangos-docker folder (if you don't want to extract them manually you can use [this docker image](../classic-client-extractor-docker))
 
 in the ` docker-compose.yml ` comment the line ` image: lacsap/cmangos-classic-server ` and uncomment the line ` #build: .  `
 
@@ -20,6 +20,6 @@ Run ` docker-compose up ` to build the CMaNGOS container and start up the CMaNGO
 
 ## Defaults
 
-The default GM account is: 
+The default GM account is:
 
 username: GM password: password1234
