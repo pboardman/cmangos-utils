@@ -12,7 +12,7 @@ mkdir run
 # Compiling
 cd /opt/build
 
-cmake ../mangos -DCMAKE_INSTALL_PREFIX=\../run -DBUILD_EXTRACTOR=ON -DBUILD_VMAP_EXTRACTOR=ON -DBUILD_MMAP_EXTRACTOR=ON -DBUILD_CORE=false -DDEBUG=0
+cmake ../mangos -DCMAKE_INSTALL_PREFIX=\../run -DBUILD_EXTRACTORS=ON -DBUILD_GAME_SERVER=OFF -DBUILD_LOGIN_SERVER=OFF
 make
 make install
 
@@ -20,8 +20,6 @@ make install
 cp /opt/run/bin/tools/* /opt/
 cp /opt/mangos/contrib/extractor_scripts/* /opt/
 
-# ExtractRessources.sh does not use the right vmap_extractor binary
-sed -i s/vmapExtractor/vmap_extractor/g /opt/ExtractResources.sh
 # replace read line to be able to use the script automatically
 sed -i s/read\ line/line=2/g /opt/ExtractResources.sh
 
