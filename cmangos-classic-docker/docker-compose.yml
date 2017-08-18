@@ -21,6 +21,8 @@ services:
     container_name: cmangos-classic-db
     ports:
       - "3306:3306"
+    volumes:
+      - /docker_data/cmangos-classic-db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: toor
 
@@ -32,4 +34,3 @@ services:
       - "8080:80"
     links:
       - db:db
-      

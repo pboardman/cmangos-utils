@@ -45,7 +45,8 @@ ADD set_realmlist_public.sql /home/mangos/mangos/sql/base/set_realmlist_public.s
 ADD etc/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 ADD etc/supervisor/conf.d/mangosd.conf /etc/supervisor/conf.d/mangosd.conf
 ADD etc/supervisor/conf.d/realmd.conf /etc/supervisor/conf.d/realmd.conf
-ADD db_create_mysql_custom.sql /home/mangos/mangos/sql/create/db_create_mysql_custom.sql
+ADD create_mangos_db.sql /home/mangos/mangos/sql/create/create_mangos_db.sql
+ADD create_char_realmd_db.sql /home/mangos/mangos/sql/create/create_char_realmd_db.sql
 ADD create_gm_account.sql /home/mangos/mangos/sql/
 ADD start.sh /start.sh
 

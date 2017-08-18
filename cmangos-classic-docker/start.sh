@@ -7,44 +7,47 @@ while ! mysqladmin ping -hdb --silent; do
   sleep 1
 done
 
+# Creating mangos user
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb -e "CREATE USER 'mangos'@'%' IDENTIFIED BY 'mangos';"
+
+# Creating and Initializing mangos db
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb < /home/mangos/mangos/sql/create/create_mangos_db.sql
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/mangos/sql/base/mangos.sql
+
+# Installing classicdb
+cd /home/mangos/classicdb
+
+./InstallFullDB.sh # Running it once to generate the config
+sed -i -e 's/CORE_PATH=""/CORE_PATH="\/home\/mangos\/mangos"/g' InstallFullDB.config
+sed -i -e 's/DB_HOST="localhost"/DB_HOST="db"/g' InstallFullDB.config
+cat InstallFullDB.config
+
+./InstallFullDB.sh
+if [[ $? != 0 ]]; then echo "Error Installing classicdb. Exiting.."; exit 1; fi
+echo "classicdb installed"
+
+# Filling ScriptDev2 database
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/mangos/sql/scriptdev2/scriptdev2.sql
+
+# Filling ACID to world-database
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/acid/acid_classic.sql
+
+
 # Executing first run
 if [ ! -f /home/mangos/run/etc/done_first_run ]; then
   echo "Running first run scripts"
 
-  # Creating empty databases
-  mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb < /home/mangos/mangos/sql/create/db_create_mysql_custom.sql
-
-  # Initializing Mangos database
-  mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/mangos/sql/base/mangos.sql
-
-  # Initializing characters database
+  # Creating and Initializing realmd and
+  mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb < /home/mangos/mangos/sql/create/create_char_realmd_db.sql
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb characters < /home/mangos/mangos/sql/base/characters.sql
-
-  # Initializing realmd database
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb realmd < /home/mangos/mangos/sql/base/realmd.sql
 
-  # Installing classicdb
-  cd /home/mangos/classicdb
-  ./InstallFullDB.sh
-  sed -i -e 's/CORE_PATH=""/CORE_PATH="\/home\/mangos\/mangos"/g' InstallFullDB.config
-  sed -i -e 's/DB_HOST="localhost"/DB_HOST="db"/g' InstallFullDB.config
-  cat InstallFullDB.config
-  ./InstallFullDB.sh
-
-  echo "CDB done"
-
-  # Filling ScriptDev2 database
-  mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/mangos/sql/scriptdev2/scriptdev2.sql
-
-  # Filling ACID to world-database
-  mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb mangos < /home/mangos/acid/acid_classic.sql
- 
   # Making server public
   pub_ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | cut -d'"' -f2)
   sed -i -e "s/IP/$pub_ip/g" /home/mangos/mangos/sql/base/set_realmlist_public.sql
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb realmd < /home/mangos/mangos/sql/base/set_realmlist_public.sql
 
-  # Creating default gm account (Username: gm PW: password1234)
+  # Creating default gm account (Username: gm PW: password1234) Please change this later.
   mysql -uroot -p${MYSQL_ROOT_PASSWORD} -hdb realmd < /home/mangos/mangos/sql/create_gm_account.sql
 
   # Creating conf files
