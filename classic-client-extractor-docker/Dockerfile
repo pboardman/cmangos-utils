@@ -1,7 +1,7 @@
 ############################################################################
 # Dockerfile to build a Classic client extractor (maps mmaps vmap dbc) image
 ############################################################################
-FROM ubuntu:14.04
+FROM ubuntu:latest
 
 RUN apt-get update
 RUN apt-get install -y build-essential gcc g++ automake git-core \

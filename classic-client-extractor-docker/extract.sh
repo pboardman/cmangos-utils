@@ -12,7 +12,8 @@ mkdir run
 # Compiling
 cd /opt/build
 
-cmake ../mangos -DCMAKE_INSTALL_PREFIX=\../run -DBUILD_EXTRACTORS=ON -DBUILD_GAME_SERVER=OFF -DBUILD_LOGIN_SERVER=OFF
+# For some reason the extractors won't compile without building the game server...
+cmake ../mangos -DCMAKE_INSTALL_PREFIX=\../run -DBUILD_EXTRACTORS=ON -DBUILD_GAME_SERVER=ON -DBUILD_LOGIN_SERVER=ON
 make
 make install
 
@@ -28,6 +29,7 @@ chmod +x /opt/MoveMapGen.sh
 
 cd /opt
 ./ExtractResources.sh a
+if [ $? != 0 ]; then echo "Extraction failed..."; done
 
 mv vmaps output/
 mv mmaps output/
