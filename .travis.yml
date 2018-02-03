@@ -1,0 +1,18 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker run --rm -v=/opt/client_output:/opt/output lacsap/cmangos-classic-client-extractor
+  - mv /opt/client_output/* cmangos-classic-docker/
+  - docker build -t lacsap/cmangos-classic cmangos-classic-docker/
+
+script:
+  -
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push lacsap/cmangos-classic;
+    fi
