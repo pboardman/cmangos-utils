@@ -1,7 +1,7 @@
 ############################################################
 # Dockerfile to build a Classic CMaNGOS Server
 ############################################################
-FROM ubuntu:14.04
+FROM ubuntu:latest
 
 ENV MYSQL_ROOT_PASSWORD toor
 
