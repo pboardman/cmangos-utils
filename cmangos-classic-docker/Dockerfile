@@ -29,7 +29,7 @@ RUN mkdir run
 WORKDIR /home/mangos/build
 
 RUN cmake ../mangos -DCMAKE_INSTALL_PREFIX=\../run -DDEBUG=0
-RUN make
+RUN make -j $(cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l)
 RUN make install
 
 WORKDIR /home/mangos/run
